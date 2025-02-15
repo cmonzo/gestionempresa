@@ -1,0 +1,46 @@
+# Laravel & PHP
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/.env
+/.env.*
+/Homestead.yaml
+/Homestead.json
+/.vagrant
+
+# Laravel Mix
+/public/mix-manifest.json
+/public/js/app.js
+/public/css/app.css
+
+# Cache & Logs
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+
+# IDEs and Text Editors
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Composer
+composer.lock
+vendor/
+
+# NPM/Yarn
+npm-debug.log*
+yarn-error.log*
+node_modules/
+
+# Laravel specific ignored files
+.phpunit.result.cache
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+#

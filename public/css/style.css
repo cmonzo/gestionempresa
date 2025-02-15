@@ -1,0 +1,96 @@
+body{
+    background-color: #50C878;
+}
+
+.register{
+    background-color: #f4f4f4; 
+    font-family: 'Arial', sans-serif;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+
+}
+
+.register > form{
+background-color: #aef5bd; 
+border-radius: 10px; 
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+padding:30px;
+width: 100%; 
+max-width: 400px;
+
+}
+
+.register label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+    
+input[type="name"],
+input[type="email"],
+input[type="password"] {
+width: 100%;
+padding: 10px;
+border: 1px solid #cccccc;
+border-radius: 5px;
+box-sizing: border-box;
+margin-bottom: 15px;
+transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+border-color: #007BFF;
+}
+
+input[type="enviar"] {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; 
+    transition: background-color 0.3s;
+}
+input[type="enviar"]:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+    .register form {
+    padding: 20px; 
+    }
+    h1 {
+    font-size: 20px; 
+    }
+    }
+
+    
+    .slider {
+        width: 80%;
+        max-width: 600px;
+        overflow: hidden;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        margin: auto;
+    }
+    
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .slide {
+        min-width: 100%;
+    }
+    
+    .slide img {
+        width: 100%;
+        display: block;
+    }
