@@ -25,6 +25,8 @@ use App\Http\Controllers\SupplierController;
 })->name('indice');*/
 Route::get('/',[StaticController::class, 'index'])->name('indice');
 Route::get('contact',[StaticController::class, 'contact'])->name('contacto');
+Route::get('quienes',[StaticController::class, 'who'])->name('quienes');
+Route::post('contact',[StaticController::class, 'send']);
 Route::get('registro',[LoginController::class,'registerForm']);
 Route::post('registro',[LoginController::class,'register'])->name('registro');
 Route::get('login',[LoginController::class,'loginForm']);

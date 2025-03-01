@@ -94,3 +94,13 @@ input[type="enviar"]:hover {
         width: 100%;
         display: block;
     }
+
+    footer img{
+        width: 30%;
+        height: auto;
+    }
+
+    footer {
+        margin-top: 3em;
+        margin-left: 2em;
+    }
