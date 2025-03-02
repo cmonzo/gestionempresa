@@ -16,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::orderBy('name','ASC')->get();
+        $services = Service::orderBy('type','ASC')->get();
             return view ('services.index', compact('services'));
     }
 
@@ -38,7 +38,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Room();
+        $service = new Service();
         $service->type = $request->type;
         $service->iva = $request->iva;
         $service->save();

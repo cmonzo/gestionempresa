@@ -1,25 +1,26 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">AULAS</h1>
+<h1 class="display-1">SERVICIOS</h1>
 
 @section('contenido')
-    <div class="rooms">
-        @forelse ($room as $roo)
-        
-    <div>
-    
-            {{-- {{$team->name}} {{$team->id}} --}}
-            <strong>Nombre: <a href="{{route('rooms.show',$roo->id)}}">{{$roo->name}} {{$roo->id}}</a></strong>
-            {{$user->team->id}}
-    </div>       
-    
-    
-    @empty
-        No hay aulas apuntados
-    @endforelse
-    
+    <div class="container text-center">
+        <div class="row align-items-center">
+            @forelse ($services as $service)
+
+                <div class="col-6 col-sm-4">
+
+                    <strong>Servicio: <a href="{{route('services.show', $service->id)}}">{{$service->type}}
+                            {{$service->id}}</a></strong>
+                    <p>IVA: {{$service->iva}}</p>
+                </div>
+
+
+            @empty
+                No hay servicios apuntados
+            @endforelse
+        </div>
     </div>
 
-    
+
 @endsection

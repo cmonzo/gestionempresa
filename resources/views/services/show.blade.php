@@ -1,13 +1,13 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">EQUIPO {{$user->name}}</h1>
+    <h1 class="display-1">SERVICIO {{$service->type}}</h1>
 
 @section('contenido')
-<div class="team">   
+<div class="service">   
 <div>
-    {{$user->name}} <br>
-    NOMBRE:<br>{{$user->name}} <br>
+    {{--{{$user->name}} <br>--}}
+    {{--NOMBRE:<br>{{$user->name}} <br>--}}
     {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}
     
 
