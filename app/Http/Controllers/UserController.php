@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -14,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderBy('name','ASC')->get();
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -44,9 +47,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+            return view('users.show',compact('user'));
     }
 
     /**
@@ -67,9 +70,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->twitter = $request->twitter;
+        $user->instagram = $request->instagram;
+        $user->youtube = $request->youtube;
+        $user->password = Hash::make($request->get('password'));
+
+        $user->save();
+        
+        return view ('auth.account');
     }
 
     /**
@@ -78,8 +90,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index', ['elim' => 1]);
     }
 }
