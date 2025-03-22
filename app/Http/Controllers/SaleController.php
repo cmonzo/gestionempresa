@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::orderBy('type','ASC')->get();
+            return view ('sales.index', compact('sales'));
     }
 
     /**
@@ -24,7 +27,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view ('sales.create');
     }
 
     /**
@@ -35,7 +38,13 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sale = new sale();
+        $sale->type = $request->type;
+        $sale->charge = $request->charge;
+        //$sale->user_id = Auth::user()->id;
+        $sale->user_id = 4;
+        $sale->customer_id = 1;
+        $sale->save();
     }
 
     /**
@@ -44,9 +53,9 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sale $sale)
     {
-        //
+        return view ('sales.show', compact('sale'));
     }
 
     /**
