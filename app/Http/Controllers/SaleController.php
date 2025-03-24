@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Customer;
+use App\Models\User;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,7 +30,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view ('sales.create');
+        $customers = Customer::orderBy('surname','ASC')->get();
+        $users = User::orderBy('name','ASC')->get();
+        return view ('sales.create', compact('customers','users'));
     }
 
     /**
@@ -42,8 +47,8 @@ class SaleController extends Controller
         $sale->type = $request->type;
         $sale->charge = $request->charge;
         //$sale->user_id = Auth::user()->id;
-        $sale->user_id = 4;
-        $sale->customer_id = 1;
+        $sale->user_id = $request->user;
+        $sale->customer_id = $request->customer;
         $sale->save();
     }
 
