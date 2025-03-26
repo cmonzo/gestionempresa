@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supplier;
+
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::orderBy('name','ASC')->get();
+            return view ('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -24,7 +28,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view ('suppliers.create');
     }
 
     /**
@@ -35,7 +39,12 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier();
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->cif = $request->cif;
+        $supplier->adress = $request->adress;
+        $supplier->save();
     }
 
     /**
@@ -44,9 +53,9 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Supplier $supplier)
     {
-        //
+        return view ('suppliers.show', compact('supplier'));
     }
 
     /**
