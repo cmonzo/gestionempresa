@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::resource('services', ServiceController::class);
 Route::resource('customers', CustomerController::class);
 Route::resource('sales', SaleController::class);
 Route::resource('suppliers', SupplierController::class);
+Route::post('/images', [ImageController::class, 'store'])->name('images.store');
 
 Route::get('cuenta', function(){
     return view('auth.account');

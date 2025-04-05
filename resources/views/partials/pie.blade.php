@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 100%; height: 25%;">
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><a href="{{route('quienes')}}">¿ Quienes somos?</a></li>
         <li class="list-group-item"><a href="{{route('indice')}}"><img src="img/trademark.png" alt="trademark"></a></li>

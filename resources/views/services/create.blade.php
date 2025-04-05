@@ -16,6 +16,11 @@
 
             <input type="submit" name="enviar" value="Enviar">
         </form>
+        <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="image" accept="image/*">
+            <button type="submit">Subir Imagen</button>
+        </form>
     </div>
 
 @endsection
