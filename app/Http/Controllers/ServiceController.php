@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::orderBy('type','ASC')->get();
-            return view ('services.index', compact('services'));
+        $services = Service::orderBy('type', 'ASC')->get();
+        return view('services.index', compact('services'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view ('services.create');
+        return view('services.create');
     }
 
     /**
@@ -38,10 +39,23 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->type = $request->type;
-        $service->iva = $request->iva;
-        $service->save();
+        
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+        
+            $path = $request->file('image')->store('public/img');
+            $url = Storage::url($path);
+        
+            
+            $service = new Service();
+            $service->type = $request->type;
+            $service->iva = $request->iva;
+            $service->save();
+            return back()->with('success', 'Imagen subida correctamente')
+                     ->with('image', $url);
+            
+        
     }
 
     /**
@@ -52,7 +66,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view ('services.show', compact('service'));
+        return view('services.show', compact('service'));
     }
 
     /**

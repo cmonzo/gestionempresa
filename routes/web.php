@@ -40,6 +40,8 @@ Route::resource('sales', SaleController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
 
+
+
 Route::get('cuenta', function(){
     return view('auth.account');
 })->name('users.account')->middleware('auth');
