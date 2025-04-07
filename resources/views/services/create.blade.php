@@ -28,7 +28,7 @@
 
             <label for="iva">Localización</label><br>
             <input type="number" name="iva" id="iva"><br>
-            <button type="submit">Subir Imagen</button>
+            <button type="submit">Enviar</button>
         </form>
     </div>
 

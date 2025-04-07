@@ -13,6 +13,7 @@
                     <strong>Servicio: <a href="{{route('services.show', $service->id)}}">{{$service->type}}
                             {{$service->id}}</a></strong>
                     <p>IVA: {{$service->iva}}</p>
+                    <p><img src="{{ Storage::url('images/'.$service->photo) }}" alt="fotoproducto" style="width: 50%"></p>
                 </div>
 
 
