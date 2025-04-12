@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">ACTUALIZAR EVENTO</h1>
+    {{--<h1 class="display-1">ACTUALIZAR EVENTO</h1>--}}
 
 @section('contenido')
 <form action="{{route('events.update',$event->name)}}" method="POST">

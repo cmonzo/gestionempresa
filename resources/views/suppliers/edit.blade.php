@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">ACTUALIZAR PROVEEDOR</h1>
+    {{--<h1 class="display-1">ACTUALIZAR PROVEEDOR</h1>--}}
 
 @section('contenido')
 <form action="{{route('suppliers.update',$supplier->id)}}" method="POST">

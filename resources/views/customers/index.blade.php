@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-<h1 class="display-1">CLIENTES</h1>
+{{--<h1 class="display-1">CLIENTES</h1>--}}
 
 @section('contenido')
     <div class="container text-center">
@@ -25,5 +25,8 @@
         </div>
     </div>
 
+    <a href="{{ route('customers.create') }}" class="btn btn-custom">
+        CREAR CLIENTE
+    </a>
 
 @endsection

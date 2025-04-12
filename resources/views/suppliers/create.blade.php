@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-<h1 class="display-1">CREAR PROVEEDOR</h1>
+{{--<h1 class="display-1">CREAR PROVEEDOR</h1>--}}
 
 @section('contenido')
     <div class="crear">

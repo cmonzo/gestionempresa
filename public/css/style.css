@@ -1,6 +1,7 @@
 body{
-    background-color: #50C878;
+    
 }
+
 
 .register{
     background-color: #f4f4f4; 
@@ -14,7 +15,8 @@ body{
 }
 
 .register > form{
-background-color: #aef5bd; 
+background-color: #DE0124; 
+color: #3B0009 !important;
 border-radius: 10px; 
 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
 padding:30px;
@@ -103,4 +105,48 @@ input[type="enviar"]:hover {
     footer {
         margin-top: 3em;
         margin-left: 2em;
+        background-color: #DE0124 !important;
     }
+
+    header{
+        background-color: #019776;
+        padding:1em 0em;
+        color: #7aa39a;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 300%;
+    }
+   
+    nav li{
+        border: white 1px solid;
+        background-color: #EB9302 !important;
+    }
+    nav a:hover{
+        background-color: #694200;
+        color: #EB9302 !important;
+    }
+
+    .btn-custom {
+        background-color: #DE0124; /* Color coral */
+        color: #3B0009;
+        border: none;
+        margin: 1em 0em 0em 2em;
+    }
+    
+    .btn-custom:hover {
+        background-color: #8E081D;
+        color: #3B0009;
+    }
+
+    .inicio{
+        background-color: #DE0124 !important;
+        color:#3B0009;
+        width: fit-content;
+        margin: 1em;
+        padding: 0.5em;
+    }
+
+    .inicio:hover{
+        background-color: #00281f !important;
+        color: #019776;
+    }
+   

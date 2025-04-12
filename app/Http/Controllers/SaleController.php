@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Customer;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 
 use App\Http\Controllers\Controller;
@@ -47,7 +47,7 @@ class SaleController extends Controller
         $sale = new sale();
         $sale->type = $request->type;
         $sale->charge = $request->charge;
-        //$sale->user_id = Auth::user()->id;
+        $sale->user_id = Auth::user()->id;
         $sale->user_id = $request->user;
         $sale->customer_id = $request->customer;
         $sale->save();

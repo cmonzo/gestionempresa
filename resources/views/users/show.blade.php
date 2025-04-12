@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1>USUARUI {{$user->name}}</h1>
+    {{--<h1>USUARUI {{$user->name}}</h1>--}}
 
 @section('contenido')
 <div class="mostrar">   

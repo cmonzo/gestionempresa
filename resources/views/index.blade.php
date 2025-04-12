@@ -1,19 +1,19 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">INICIO</h1>
+    {{--<h1 class="display-1">INICIO</h1>--}}
 
 @section('contenido')
     
     
-    <div class="inicio">
+    <div class="inicio uppercase">
        BIENVENDIO
        @if(Auth::check())
-            {{Auth::user()->name}}
+            {{strtoupper(Auth::user()->name)}}
         @else
             
        @endif
-        <br>Bienvenido a GESTION<br>
+        A GESTION
         
 
     </div>

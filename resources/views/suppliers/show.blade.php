@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-<h1 class="display-1">PROVEEDOR {{$supplier->name}}</h1>
+{{--<h1 class="display-1">PROVEEDOR {{$supplier->name}}</h1>--}}
 
 
 

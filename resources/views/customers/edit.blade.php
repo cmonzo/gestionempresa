@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">ACTUALIZAR CLIENTE</h1>
+    {{--<h1 class="display-1">ACTUALIZAR CLIENTE</h1>--}}
 
 @section('contenido')
 <form action="{{route('customers.update',$customer->name)}}" method="POST">

@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">ACTUALIZAR VENTA</h1>
+   {{-- <h1 class="display-1">ACTUALIZAR VENTA</h1>--}}
 
 @section('contenido')
 <form action="{{route('sales.update',$sale->id)}}" method="POST">

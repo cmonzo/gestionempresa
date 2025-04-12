@@ -1,7 +1,7 @@
 @extends('layaout')
 
 @section('titulo')
-    <h1 class="display-1">CUENTA</h1>
+    {{--<h1 class="display-1">CUENTA</h1>--}}
 
     @section('contenido')
     
