@@ -25,5 +25,7 @@
         </div>
     </div>
 
-
+    <a href="{{ route('sales.create') }}" class="btn btn-custom">
+        CREAR VENTA
+    </a>
 @endsection

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -17,8 +16,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::orderBy('surname','ASC')->get();
-            return view ('customers.index', compact('customers'));
+        if (Auth::check()) {
+            $customers = Customer::orderBy('surname', 'ASC')->get();
+            return view('customers.index', compact('customers'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -28,7 +31,11 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view ('customers.create');
+        if (Auth::check()) {
+            return view('customers.create');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -39,13 +46,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customer();
-        $customer->name = $request->name;
-        $customer->surname = $request->surname;
-        $customer->phone = $request->phone;
-        $customer->nif = $request->nif;
-        $customer->adress = $request->adress;
-        $customer->save();
+        if (Auth::check()) {
+            $customer = new Customer();
+            $customer->name = $request->name;
+            $customer->surname = $request->surname;
+            $customer->phone = $request->phone;
+            $customer->nif = $request->nif;
+            $customer->adress = $request->adress;
+            $customer->save();
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -56,7 +67,11 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view ('customers.show', compact('customer'));
+        if (Auth::check()) {
+            return view('customers.show', compact('customer'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**

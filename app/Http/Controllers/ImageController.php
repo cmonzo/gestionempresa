@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
     public function store(Request $request)
     {
+        if (Auth::check()) {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -29,6 +31,10 @@ class ImageController extends Controller
         $path = $image->storeAs('public/images', $fileName);
         //$url = Storage::url($path);
 
-        return back()->with('success', 'Imagen subida correctamente');
+        return redirect()->route('services.index');
+    }
+    else{
+        return redirect()->route('indice');
+    }
     }
 }

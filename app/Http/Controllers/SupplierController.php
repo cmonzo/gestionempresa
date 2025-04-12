@@ -7,6 +7,7 @@ use App\Models\Supplier;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
@@ -17,6 +18,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        
         $suppliers = Supplier::orderBy('name','ASC')->get();
             return view ('suppliers.index', compact('suppliers'));
     }
@@ -28,7 +30,11 @@ class SupplierController extends Controller
      */
     public function create()
     {
+        if (Auth::check()) {
         return view ('suppliers.create');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -39,12 +45,16 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::check()) {
         $supplier = new Supplier();
         $supplier->name = $request->name;
         $supplier->phone = $request->phone;
         $supplier->cif = $request->cif;
         $supplier->adress = $request->adress;
         $supplier->save();
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -55,7 +65,11 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
+        if (Auth::check()) {
         return view ('suppliers.show', compact('supplier'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**

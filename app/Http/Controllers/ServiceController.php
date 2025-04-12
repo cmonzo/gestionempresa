@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -28,7 +29,11 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('services.create');
+        if (Auth::check()) {
+            return view('services.create');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -39,7 +44,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        
+        /*
             $request->validate([
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
@@ -54,8 +59,8 @@ class ServiceController extends Controller
             $service->save();
             return back()->with('success', 'Imagen subida correctamente')
                      ->with('image', $url);
-            
-        
+        */
+
     }
 
     /**
@@ -66,7 +71,11 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view('services.show', compact('service'));
+        if (Auth::check()) {
+            return view('services.show', compact('service'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**

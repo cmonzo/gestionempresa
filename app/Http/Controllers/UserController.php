@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -16,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name','ASC')->get();
-        return view('users.index',compact('users'));
+        $users = User::orderBy('name', 'ASC')->get();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -49,7 +50,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-            return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -72,16 +73,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->email = $request->email;
-        $user->birthday = $request->birthday;
-        $user->twitter = $request->twitter;
-        $user->instagram = $request->instagram;
-        $user->youtube = $request->youtube;
-        $user->password = Hash::make($request->get('password'));
+        if (Auth::check()) {
+            $user->email = $request->email;
+            $user->birthday = $request->birthday;
+            $user->twitter = $request->twitter;
+            $user->instagram = $request->instagram;
+            $user->youtube = $request->youtube;
+            $user->password = Hash::make($request->get('password'));
 
-        $user->save();
-        
-        return view ('auth.account');
+            $user->save();
+
+            return view('auth.account');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -92,7 +97,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        return redirect()->route('users.index', ['elim' => 1]);
+        if (Auth::user()->rol == 'admin') {
+            $user->delete();
+            return redirect()->route('users.index', ['elim' => 1]);
+        } else {
+            return redirect()->route('indice');
+        }
+        //para eliminar, puedo crear una vista en la que te lleve a otra pagina donde diga si(se elimina) y no, vuelve a la pagina anterior
     }
 }

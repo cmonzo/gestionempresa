@@ -25,5 +25,7 @@
         </div>
     </div>
 
-
+    <a href="{{ route('suppliers.create') }}" class="btn btn-custom">
+        CREAR PROVEEDOR
+    </a>
 @endsection

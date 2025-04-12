@@ -26,7 +26,7 @@
             <label for="type">Nombre del servicio:</label><br>
             <input type="text" name="type" id="type"><br>
 
-            <label for="iva">Localización</label><br>
+            <label for="iva">IVA</label><br>
             <input type="number" name="iva" id="iva"><br>
             <button type="submit">Enviar</button>
         </form>

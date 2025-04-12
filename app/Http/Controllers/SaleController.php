@@ -20,8 +20,12 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::orderBy('type','ASC')->get();
-            return view ('sales.index', compact('sales'));
+        if (Auth::check()) {
+            $sales = Sale::orderBy('type', 'ASC')->get();
+            return view('sales.index', compact('sales'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -31,9 +35,14 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $customers = Customer::orderBy('surname','ASC')->get();
-        $users = User::orderBy('name','ASC')->get();
-        return view ('sales.create', compact('customers','users'));
+        if (Auth::check()) {
+
+            $customers = Customer::orderBy('surname', 'ASC')->get();
+            $users = User::orderBy('name', 'ASC')->get();
+            return view('sales.create', compact('customers', 'users'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -44,13 +53,17 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $sale = new sale();
-        $sale->type = $request->type;
-        $sale->charge = $request->charge;
-        $sale->user_id = Auth::user()->id;
-        $sale->user_id = $request->user;
-        $sale->customer_id = $request->customer;
-        $sale->save();
+        if (Auth::check()) {
+            $sale = new sale();
+            $sale->type = $request->type;
+            $sale->charge = $request->charge;
+            $sale->user_id = Auth::user()->id;
+            $sale->user_id = $request->user;
+            $sale->customer_id = $request->customer;
+            $sale->save();
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -61,7 +74,11 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        return view ('sales.show', compact('sale'));
+        if (Auth::check()) {
+            return view('sales.show', compact('sale'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -84,7 +101,7 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //aqui en la vista de edit, hare que el update ademas tenga el campo para añadir la venta con el servicio y poder hacer el attach
     }
 
     /**

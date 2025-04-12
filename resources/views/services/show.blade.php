@@ -4,8 +4,12 @@
     {{--<h1 class="display-1">SERVICIO {{$service->type}}</h1>--}}
 
 @section('contenido')
-<div class="service">   
-<div>
+<div class="service cm-service">   
+    <div>
+       {{$service->type}}<br>
+       {{$service->iva}}<br>
+       <img src="{{ Storage::url('images/'.$service->photo) }}" alt="fotoproducto" style="width: 50%">
+       
     {{--{{$user->name}} <br>--}}
     {{--NOMBRE:<br>{{$user->name}} <br>--}}
     {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}

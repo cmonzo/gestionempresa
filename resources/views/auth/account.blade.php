@@ -24,7 +24,7 @@
 
     <input type="submit" name="eviar" value="Enviar">
 </form>
-
+<p>{{Auth::user()->rol}}</p>
 <form action="{{route('users.destroy',Auth::user()->id)}}" method="post">
     @csrf
     @method('delete')
