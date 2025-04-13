@@ -12,9 +12,13 @@
 
                     <strong>Venta: <a href="{{route('sales.show', $sale->id)}}">{{$sale->type}}
                             {{$sale->id}}</a></strong>
-                    <p>Tipo: {{$sale->type}}</p>
-                    <p>Cargo: {{$sale->charge}}</p>
-                    <p>Vendedor: {{$sale->user->name}}</p>
+                    <p>LOCALIZADOR: {{$sale->locator}}</p>
+                    <p>TIPO: {{$sale->type}}</p>
+                    <p>PRECIO NETO: {{$sale->net}}€</p>
+                    <p>COMISION: {{$sale->commission}}€</p>
+                    <p>PVP: {{$sale->net + $sale->commission}}€</p>
+                    <p>COMENTARIO: {{$sale->comment}}</p>
+                    <p>VENDEDOR: {{$sale->user->name}}</p>
                     <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
                 </div>
 

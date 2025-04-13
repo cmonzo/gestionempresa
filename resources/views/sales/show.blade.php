@@ -6,10 +6,14 @@
 @section('contenido')
 <div class="service">   
 <div>
-   {{$sale->type}}<br>
-   {{$sale->charge}}<br>
-   {{$sale->user_id}}<br>
-   {{$sale->customer_id}}<br>
+    <p>LOCALIZADOR: {{$sale->locator}}</p>
+    <p>TIPO: {{$sale->type}}</p>
+    <p>PRECIO NETO: {{$sale->net}}€</p>
+    <p>COMISION: {{$sale->commission}}€</p>
+    <p>PVP: {{$sale->net + $sale->commission}}€</p>
+    <p>COMENTARIO: {{$sale->comment}}</p>
+    <p>VENDEDOR: {{$sale->user->name}}</p>
+    <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
     {{--NOMBRE:<br>{{$user->name}} <br>--}}
     {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}
     

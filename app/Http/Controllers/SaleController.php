@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Customer;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -38,8 +38,7 @@ class SaleController extends Controller
         if (Auth::check()) {
 
             $customers = Customer::orderBy('surname', 'ASC')->get();
-            $users = User::orderBy('name', 'ASC')->get();
-            return view('sales.create', compact('customers', 'users'));
+            return view('sales.create', compact('customers'));
         } else {
             return redirect()->route('indice');
         }
@@ -55,10 +54,12 @@ class SaleController extends Controller
     {
         if (Auth::check()) {
             $sale = new sale();
+            $sale->locator = time() . '_' . $request->type . $request->customer;
             $sale->type = $request->type;
-            $sale->charge = $request->charge;
+            $sale->net = $request->net;
+            $sale->commission = $request->commission;
+            $sale->comment = $request->comment;
             $sale->user_id = Auth::user()->id;
-            $sale->user_id = $request->user;
             $sale->customer_id = $request->customer;
             $sale->save();
         } else {

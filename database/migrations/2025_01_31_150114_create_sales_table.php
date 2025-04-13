@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('locator');
             $table->string('type');
-            $table->integer('charge');
+            $table->decimal('net',8,2);
+            $table->decimal('commission',8,2);
+            $table->string('comment');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

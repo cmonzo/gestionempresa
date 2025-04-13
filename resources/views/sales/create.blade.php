@@ -8,11 +8,17 @@
         <form action="{{route('sales.store')}}" method="POST">
             @csrf
 
-            <label for="type">Tipo:</label><br>
+            <label for="type">TIPO:</label><br>
             <input type="text" name="type" id="type"><br>
 
-            <label for="charge">Cargo</label><br>
-            <input type="number" name="charge" id="charge" min="1" step="0.01"><br><br>
+            <label for="net">PRECIO NETO</label><br>
+            <input type="number" name="net" id="net" min="1" step="0.01"><br><br>
+
+            <label for="commission">COMISION</label><br>
+            <input type="number" name="commission" id="commission" min="1" step="0.01"><br><br>
+
+            <label for="comment">COMENTARIO:</label><br>
+            <input type="text" name="comment" id="comment"><br>
 
             <select name="customer" id="customer" class="form-control">
                 @forelse ($customers as $customer)
