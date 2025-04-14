@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
@@ -24,6 +25,8 @@ class ImageController extends Controller
         $service->iva = $request->iva;
         $service->photo=$fileName;
         $service->save();
+        $service->suppliers()->attach($request->supplier_id);
+
         
         
 

@@ -18,13 +18,10 @@ class Sale extends Model
         return $this->belongsTo(Customer::class);
         }
 
-        public function suppliers()
-        {
-        return $this->belongsTo(Supplier::class);
-        }
+        
 
         public function services()
         {
-        return $this->belongsTo(Service::class);
+        return $this->belongsToMany(Service::class);
         }
 }

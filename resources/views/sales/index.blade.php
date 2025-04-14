@@ -20,6 +20,8 @@
                     <p>COMENTARIO: {{$sale->comment}}</p>
                     <p>VENDEDOR: {{$sale->user->name}}</p>
                     <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
+                    
+                    {{--lo tengo mal enfocado, tal y como lo tengo no es muchos a muchos, lo que tengo es una realcion de 1 a 1, cuando creo 1 venta solo tiene un servio --}}
                 </div>
 
 

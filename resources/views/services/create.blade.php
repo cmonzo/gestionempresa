@@ -28,6 +28,15 @@
 
             <label for="iva">IVA</label><br>
             <input type="number" name="iva" id="iva"><br>
+
+            <select name="supplier_id" id="supplier_id" class="form-control">
+                @forelse ($suppliers as $supplier)
+                    <option value="{{ $supplier->id }}">PROVEEDOR {{ $supplier->name }}</option>
+                    @empty
+                    No hay proveedores apuntados
+                @endforelse
+            </select>
+
             <button type="submit">Enviar</button>
         </form>
     </div>

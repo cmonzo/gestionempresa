@@ -9,6 +9,19 @@
        {{$service->type}}<br>
        {{$service->iva}}<br>
        <img src="{{ Storage::url('images/'.$service->photo) }}" alt="fotoproducto" style="width: 50%">
+       <p>@forelse ($service->suppliers as $supplier)
+
+        <div class="col-6 col-sm-4">
+            <p>NOMBRE: {{$supplier->name}}</p>
+            <p>TELEFONO: {{$supplier->phone}}</p>
+            <p>CIF: {{$supplier->cif}}</p>
+            <p>DIRECCION: {{$supplier->adress}}</p>            
+        </div>
+
+
+    @empty
+        No hay proveedores apuntados
+    @endforelse</p>
        
     {{--{{$user->name}} <br>--}}
     {{--NOMBRE:<br>{{$user->name}} <br>--}}

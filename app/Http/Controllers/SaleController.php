@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Customer;
+use App\Models\Service;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -36,9 +37,9 @@ class SaleController extends Controller
     public function create()
     {
         if (Auth::check()) {
-
+            $services= Service::orderBy('type', 'ASC')->get();
             $customers = Customer::orderBy('surname', 'ASC')->get();
-            return view('sales.create', compact('customers'));
+            return view('sales.create', compact('customers','services'));
         } else {
             return redirect()->route('indice');
         }
@@ -62,6 +63,8 @@ class SaleController extends Controller
             $sale->user_id = Auth::user()->id;
             $sale->customer_id = $request->customer;
             $sale->save();
+            $sale->services()->attach($request->service_id);
+            return redirect()->route('sales.index');
         } else {
             return redirect()->route('indice');
         }

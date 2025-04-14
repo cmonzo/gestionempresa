@@ -27,6 +27,13 @@
                     No hay clientes apuntados
                 @endforelse
             </select>
+            <select name="service_id" id="service_id" class="form-control">
+                @forelse ($services as $service)
+                    <option value="{{ $service->id }}">SERVICIO {{ $service->type }}</option>
+                    @empty
+                    No hay servicios apuntados
+                @endforelse
+            </select>
 
             <input type="submit" name="enviar" value="Enviar">
         </form>

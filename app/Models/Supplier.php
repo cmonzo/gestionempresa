@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     use HasFactory;
-    public function sales()
-    {
-    return $this->belongsToMany(Sale::class);
-    }
+    public function services()
+        {
+        return $this->belongsToMany(Service::class);
+        }
 }

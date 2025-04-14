@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
@@ -30,7 +31,8 @@ class ServiceController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            return view('services.create');
+            $suppliers = Supplier::orderBy('name','ASC')->get();
+            return view('services.create',compact('suppliers'));
         } else {
             return redirect()->route('indice');
         }
