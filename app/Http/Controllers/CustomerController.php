@@ -54,6 +54,8 @@ class CustomerController extends Controller
             $customer->nif = $request->nif;
             $customer->adress = $request->adress;
             $customer->save();
+            return redirect()->route('customers.index');
+
         } else {
             return redirect()->route('indice');
         }

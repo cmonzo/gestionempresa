@@ -52,6 +52,8 @@ class SupplierController extends Controller
         $supplier->cif = $request->cif;
         $supplier->adress = $request->adress;
         $supplier->save();
+        return redirect()->route('suppliers.index');
+        
         } else {
             return redirect()->route('indice');
         }
@@ -80,7 +82,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$supplier->services()->attach($request->service_id);
     }
 
     /**

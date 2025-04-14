@@ -62,8 +62,8 @@ class SaleController extends Controller
             $sale->comment = $request->comment;
             $sale->user_id = Auth::user()->id;
             $sale->customer_id = $request->customer;
+            $sale->service_id = $request->service_id;
             $sale->save();
-            $sale->services()->attach($request->service_id);
             return redirect()->route('sales.index');
         } else {
             return redirect()->route('indice');

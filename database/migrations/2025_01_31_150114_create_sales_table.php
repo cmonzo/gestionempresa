@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('comment');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('service_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

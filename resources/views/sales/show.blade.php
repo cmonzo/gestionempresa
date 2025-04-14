@@ -14,6 +14,9 @@
     <p>COMENTARIO: {{$sale->comment}}</p>
     <p>VENDEDOR: {{$sale->user->name}}</p>
     <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
+    <a href="{{route('services.show', $sale->service->id)}}">{{$sale->service->type}}</a>
+    
+
     
     {{--NOMBRE:<br>{{$user->name}} <br>--}}
     {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}

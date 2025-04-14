@@ -20,8 +20,8 @@ class Sale extends Model
 
         
 
-        public function services()
+        public function service()
         {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsTo(Service::class);
         }
 }

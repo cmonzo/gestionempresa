@@ -10,7 +10,7 @@ class Service extends Model
     use HasFactory;
     public function sales()
     {
-    return $this->belongsToMany(Sale::class);
+    return $this->hasMany(Sale::class);
     }
     public function suppliers()
         {

@@ -164,4 +164,7 @@ input[type="enviar"]:hover {
         padding: 20px;
         text-align: center;
     }
+    main{
+        margin-bottom: 1em;
+    }
    

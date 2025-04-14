@@ -6,9 +6,11 @@
 @section('contenido')
 <div class="service cm-service">   
     <div>
-       {{$service->type}}<br>
-       {{$service->iva}}<br>
+       TIPO:{{$service->type}}<br>
+       IVA:{{$service->iva}}<br>
        <img src="{{ Storage::url('images/'.$service->photo) }}" alt="fotoproducto" style="width: 50%">
+       <div>
+        <p>PROVEEDORES</p>
        <p>@forelse ($service->suppliers as $supplier)
 
         <div class="col-6 col-sm-4">
@@ -22,6 +24,7 @@
     @empty
         No hay proveedores apuntados
     @endforelse</p>
+</div>
        
     {{--{{$user->name}} <br>--}}
     {{--NOMBRE:<br>{{$user->name}} <br>--}}
