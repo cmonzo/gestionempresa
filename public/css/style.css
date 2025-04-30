@@ -100,6 +100,7 @@ input[type="enviar"]:hover {
     footer img{
         width: 3%;
         height: auto;
+        background-color: #DE0124 !important;
     }
 
     footer {
@@ -116,6 +117,10 @@ input[type="enviar"]:hover {
         font-size: 300%;
     }
    
+    .card *{
+        border: white 1px solid;
+        background-color: #EB9302 !important;
+    }
     nav li{
         border: white 1px solid;
         background-color: #EB9302 !important;
