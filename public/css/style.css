@@ -24,50 +24,53 @@
     footer img{
         width: 3%;
         height: auto;
-        background-color: #DE0124 !important;
+        background-color: #D1686E !important;
     }
 
     footer {
         margin-top: 3em;
-        margin-left: 2em;
-        background-color: #DE0124 !important;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        background-color: #D1686E !important;
+    }
+    footer ul li{
+        background-color: #D1686E !important;
     }
 
     header{
-        background-color: #019776;
+        background-color: #41837e;
         padding:1em 0em;
         color: #7aa39a;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 300%;
     }
    
-    .card *{
-        border: white 1px solid;
-        background-color: #EB9302 !important;
+    footer * {
+        background-color: #D1686E !important;
     }
     nav li{
         border: white 1px solid;
-        background-color: #EB9302 !important;
+        background-color: #D4B06A !important;
     }
     nav a:hover{
         background-color: #694200;
-        color: #EB9302 !important;
+        color: #D4B06A !important;
     }
 
     .btn-custom {
-        background-color: #DE0124; /* Color coral */
+        background-color: #D1686E; /* Color coral */
         color: #3B0009;
         border: none;
         margin: 1em 0em 0em 2em;
     }
     
     .btn-custom:hover {
-        background-color: #8E081D;
+        background-color: #D1686E;
         color: #3B0009;
     }
 
     .inicio{
-        background-color: #DE0124 !important;
+        background-color: #D1686E !important;
         color:#3B0009;
         width: fit-content;
         margin: 1em;
@@ -75,8 +78,8 @@
     }
 
     .inicio:hover{
-        background-color: #00281f !important;
-        color: #019776;
+        background-color: #41837e !important;
+        color: #689d99;
     }
 
     .cm-service{
