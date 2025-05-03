@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -75,10 +76,6 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $user->email = $request->email;
-            $user->birthday = $request->birthday;
-            $user->twitter = $request->twitter;
-            $user->instagram = $request->instagram;
-            $user->youtube = $request->youtube;
             $user->password = Hash::make($request->get('password'));
 
             $user->save();

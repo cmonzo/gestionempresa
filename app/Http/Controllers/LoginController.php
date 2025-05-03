@@ -18,7 +18,17 @@ class LoginController extends Controller
         //dd('llega');
         $user = new User();
         $user->name =$request->get('name');
+        $user->surname = $request->get('surname');
+        $user->phone = $request->get('phone');
+        $user->nif = $request->get('nif');
+        $user->born = $request->get('born');
+        $user->alias = $request->get('alias');
+        $user->department = $request->get('department');
         $user->email = $request->get('email');
+        $user->hiring = $request->get('hiring');
+        $user->status = $request->get('status');
+        $user->gender = $request->get('gender');
+        $user->position = $request->get('position');
         $user->password = Hash::make($request->get('password'));
         $user->rol = 'worker';
         $user->save();
