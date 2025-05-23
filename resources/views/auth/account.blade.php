@@ -10,7 +10,7 @@
         @csrf
         @method('put')
 
-        <label for="name">{{Auth::user()->name}}</label><br>
+        <label for="name">{{Auth::user()->name}} {{Auth::user()->surname}}</label><br>
 
         <label for="email">Email:</label><br>
         <input type="email" name="email" id="email" value="{{Auth::user()->email}}"><br>
@@ -34,6 +34,7 @@
         <input type="date" name="hiring" id="hiring" value="{{Auth::user()->hiring}}"><br>
 
         <label for="status">Estado del empleado:</label>
+        @if(Auth::user()->rol == 'admin')
         <select name="status" id="status" class="form-control">
             <option value="{{Auth::user()->status}}"></option>
             <option value="active">activo</option>
@@ -41,6 +42,9 @@
             <option value="holidays">vacaciones</option>
             <option value="injured">baja</option>
         </select>
+        @else
+            {{Auth::user()->status}} <br>
+        @endif
 
         <label for="gender">Genero del empleado:</label>
         <select name="gender" id="gender" class="form-control">
@@ -51,12 +55,16 @@
         </select>
 
         <label for="Posición">Posición del empleado:</label>
+        @if(Auth::user()->rol == 'admin')
         <select name="position" id="position" class="form-control">
             <option value="{{Auth::user()->position}}"></option>
             <option value="manager">Director</option>
             <option value="administrative">Administrativo</option>
             <option value="business">Comercial</option>
         </select>
+        @else
+            {{Auth::user()->position}} <br>
+        @endif
 
         <label for="password">Contraseña:</label><br>
         <input type="password" name="password" id="password"><br>
@@ -67,13 +75,6 @@
         <input type="submit" name="eviar" value="Enviar">
     </form>
     <p>{{Auth::user()->rol}}</p>
-    <form action="{{route('users.destroy', Auth::user()->id)}}" method="post">
-        @csrf
-        @method('delete')
-        <input type="submit" value="eliminar">
-    </form>
-
-
 
     @if ($errors->any())
         <ul>

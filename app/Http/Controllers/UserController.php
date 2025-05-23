@@ -76,14 +76,25 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->nif = $request->nif;
+            $user->born = $request->born;
+            $user->alias = $request->alias;
+            $user->department = $request->department;
+            $user->email = $request->email;
+            $user->hiring = $request->hiring;
+            $user->gender = $request->gender;
+
             $user->password = Hash::make($request->get('password'));
-
+            if (Auth::user()->rol == 'admin') {
+                $user->rol = $request->rol;
+                $user->status = $request->status;
+                $user->position = $request->position;
+            }
             $user->save();
-
-            return view('auth.account');
-        } else {
-            return redirect()->route('indice');
         }
+        return redirect()->route('indice');
+
     }
 
     /**

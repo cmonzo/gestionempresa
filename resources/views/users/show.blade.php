@@ -13,6 +13,14 @@
     
     </div>
     
+    @if(Auth::user()->rol == 'admin')
+    <form action="{{route('users.destroy', $user->id)}}" method="post">
+        @csrf
+        @method('delete')
+        <input type="submit" value="eliminar">
+    </form>
+    @endif
+    
 </div>
     
 @endsection
