@@ -6,28 +6,55 @@
 @section('contenido')
     <div class="container text-center">
         <div class="row align-items-center">
+            <table style="width:100%">
+                <caption>VENTAS 2025</caption>
+                <thead>
+    <tr>
+      <th>LOCALIZADOR</th>
+      <th>TIPO</th>
+      <th>PRECIO NETO</th>
+      <th>PRECIO VENTA</th>
+      <th>COMISION</th>
+      <th>COMENTARIO</th>
+      <th>VENDEDOR</th>
+      <th>CLIENTE</th>
+      <th>SERVICIO</th>
+      <th>FECHA DE CREACION</th>
+      <th>FECHA DE MODIFICACION</th>
+    </tr>
+  </thead>
+          <tbody>      
             @forelse ($sales as $sale)
 
-                <div class="col-6 col-sm-4">
+    <tr>
+        <td> <a href="{{route('sales.show', $sale->id)}}">{{$sale->locator}}</a></td>
+        <td>{{$sale->type}}</td>
+        <td>{{$sale->net}}€</td>
+        <td>{{$sale->commission}}€</td>
+        <td>{{$sale->net + $sale->commission}}€</td>
+        <td>{{$sale->comment}}</td>
+        <td>{{$sale->user->name}} {{$sale->user->surname}}</td>
+        <td>{{$sale->customer->name}} {{$sale->customer->surname}}</td>
+        <td> <a href="{{route('services.show', $sale->service->id)}}">{{$sale->service->type}}</a></td>
+        <td>{{$sale->created_at}}</td>
+        <td>{{$sale->updated_at}}</td>
+    </tr>
+            
 
-                    <strong>Venta: <a href="{{route('sales.show', $sale->id)}}">{{$sale->type}}
-                            {{$sale->id}}</a></strong>
-                    <p>LOCALIZADOR: {{$sale->locator}}</p>
-                    <p>TIPO: {{$sale->type}}</p>
-                    <p>PRECIO NETO: {{$sale->net}}€</p>
-                    <p>COMISION: {{$sale->commission}}€</p>
-                    <p>PVP: {{$sale->net + $sale->commission}}€</p>
-                    <p>COMENTARIO: {{$sale->comment}}</p>
-                    <p>VENDEDOR: {{$sale->user->name}}</p>
-                    <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
-                    
-                    {{--lo tengo mal enfocado, tal y como lo tengo no es muchos a muchos, lo que tengo es una realcion de 1 a 1, cuando creo 1 venta solo tiene un servio --}}
-                </div>
+                
 
 
             @empty
                 No hay clientes apuntados
             @endforelse
+            </tbody>
+            <tfoot>
+    <tr>
+      <td colspan="3"></td>
+    </tr>
+  </tfoot>
+</table>
+
         </div>
     </div>
 

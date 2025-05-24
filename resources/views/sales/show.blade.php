@@ -16,43 +16,19 @@
     <p>Cliente: {{$sale->customer->name}} {{$sale->customer->surname}}</p>
     <a href="{{route('services.show', $sale->service->id)}}">{{$sale->service->type}}</a>
     
-
+     @if(Auth::check())
+    <a href="{{route('sales.edit', $sale->id)}}" class="btn btn-custom">
+        MODIFICAR VENTA
+    </a>
+    @endif
     
-    {{--NOMBRE:<br>{{$user->name}} <br>--}}
-    {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}
-    
-
-        
-        {{-- @if($event->users->contains(Auth::user()))
-            <a href="{{route('desapuntar',$event)}}">Desapuntarme</a>
-        @else
-            <a href="{{route('apuntar',$event)}}">Apuntarme</a>
-        @endif --}}
-    
-    {{-- @forelse ($team->users as $user)
-        
-    <div class="player">
-        @if(Auth::check())
-            {{$user->name}} <br>
-        @endif    
-
-    </div>
-    
-    <div class="gamer">
-        {{$user->name}}
-        {{$user->number}}
-
-    </div>
-    @empty
-        No hay jugadores apuntados
-    @endforelse --}}
-    
-    </div>
-    {{-- <form action="{{route('users.destroy',$user->id)}}" method="post">
-        @csrf
-        @method('delete')
-        <input type="submit" value="eliminar">
-</form> --}}
+    @if(Auth::user()->rol == 'admin')
+            <form action="{{route('sales.destroy', $sale->id)}}" method="post">
+                @csrf
+                @method('delete')
+                <input type="submit" value="eliminar">
+            </form>
+        @endif
 </div>
     
 @endsection

@@ -22,7 +22,7 @@
         </div>
 
         @if(Auth::user()->rol == 'admin')
-            <form action="{{route('users.update', Auth::user()->id)}}" method="POST">
+            <form action="{{route('users.updateWorker', Auth::user()->id)}}" method="POST">
                 @csrf
                 @method('put')
                 <label for="status">Estado del empleado:</label>

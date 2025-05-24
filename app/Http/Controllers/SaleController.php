@@ -91,9 +91,15 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sale $sale)
     {
-        //
+        if (Auth::check()) {
+            $customers = Customer::orderBy('surname', 'ASC')->get();
+            $services= Service::orderBy('type', 'ASC')->get();
+            return view('sales.edit', compact('sale','customers','services'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -103,9 +109,22 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sale $sale)
     {
         //aqui en la vista de edit, hare que el update ademas tenga el campo para añadir la venta con el servicio y poder hacer el attach
+         if (Auth::check()) {
+            $sale->type = $request->type;
+            $sale->net = $request->net;
+            $sale->commission = $request->commission;
+            $sale->comment = $request->comment;
+            $sale->user_id = Auth::user()->id;
+            $sale->customer_id = $request->customer;
+            $sale->service_id = $request->service_id;
+            $sale->save();
+            return redirect()->route('sales.index');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -114,8 +133,13 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sale $sale)
     {
-        //
+        if (Auth::user()->rol == 'admin') {
+            $sale->delete();
+            return redirect()->route('sales.index', ['elim' => 1]);
+        } else {
+            return redirect()->route('indice');
+        }
     }
 }

@@ -96,6 +96,21 @@ class UserController extends Controller
         return redirect()->route('indice');
 
     }
+    public function updateWorker(Request $request, User $user)
+    {
+        if (Auth::check()) {
+            if (Auth::user()->rol == 'admin') {
+                $user->rol = $request->rol;
+                $user->status = $request->status;
+                $user->position = $request->position;
+            }
+            $user->save();
+        }
+        return redirect()->route('indice');
+
+    }
+
+    
 
     /**
      * Remove the specified resource from storage.
