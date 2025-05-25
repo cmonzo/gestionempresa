@@ -31,8 +31,8 @@ class ServiceController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            $suppliers = Supplier::orderBy('name','ASC')->get();
-            return view('services.create',compact('suppliers'));
+            $suppliers = Supplier::orderBy('name', 'ASC')->get();
+            return view('services.create', compact('suppliers'));
         } else {
             return redirect()->route('indice');
         }
@@ -86,9 +86,14 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        //
+        if (Auth::check()) {
+            $suppliers = Supplier::orderBy('name', 'ASC')->get();
+            return view('services.edit', compact('service', 'suppliers'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -98,9 +103,18 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Service $service)
     {
-        //
+        if (Auth::check()) {
+            $service->type = $request->type;
+            $service->iva = $request->iva;
+            $service->save();
+
+            return redirect()->route('services.index');
+        } else {
+            return redirect()->route('indice');
+        }
+
     }
 
     /**
@@ -109,8 +123,13 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        //
+        if (Auth::user()->rol == 'admin') {
+            $service->delete();
+            return redirect()->route('services.index', ['elim' => 1]);
+        } else {
+            return redirect()->route('indice');
+        }
     }
 }

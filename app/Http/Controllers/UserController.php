@@ -60,9 +60,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        if (Auth::check() && Auth::user()->rol == 'admin') {
+            return view('users.edit', compact('user'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**

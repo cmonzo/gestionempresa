@@ -80,9 +80,13 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supplier $supplier)
     {
-        //$supplier->services()->attach($request->service_id);
+        if (Auth::check()) {
+        return view ('suppliers.edit', compact('supplier'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -92,9 +96,19 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Supplier $supplier)
     {
-        //
+        if (Auth::check()) {
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->cif = $request->cif;
+        $supplier->adress = $request->adress;
+        $supplier->save();
+        return redirect()->route('suppliers.index');
+        
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -103,8 +117,13 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        if (Auth::user()->rol == 'admin') {
+            $supplier->delete();
+            return redirect()->route('supplier.index', ['elim' => 1]);
+        } else {
+            return redirect()->route('indice');
+        }
     }
 }
