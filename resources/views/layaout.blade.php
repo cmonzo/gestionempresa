@@ -20,11 +20,20 @@
 
 
         GESTIÓN EMPRESA
+        {{--<div class="language-switcher">
+            <form action="{{ route('locale.change') }}" method="GET">
+                <select onchange="window.location.href='{{ route('locale.change', '') }}/'+this.value">
+                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>Español</option>
+                </select>
+            </form>
+        </div>--}}
     </header>
     @include('partials.nav')
 
     <main>
         @yield('contenido')
+        
     </main>
     <footer>
         @include('partials.pie')

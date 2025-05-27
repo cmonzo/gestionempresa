@@ -24,6 +24,9 @@ use App\Http\Controllers\ImageController;
 /*Route::get('/', function () {
     return view('index');
 })->name('indice');*/
+
+Route::get('/change-locale/{locale}', [LocaleController::class, 'change'])
+    ->name('locale.change');
 Route::get('/',[StaticController::class, 'index'])->name('indice');
 Route::get('contact',[StaticController::class, 'contact'])->name('contacto');
 Route::get('quienes',[StaticController::class, 'who'])->name('quienes');
@@ -48,4 +51,5 @@ Route::post('/images', [ImageController::class, 'store'])->name('images.store');
 Route::get('cuenta', function(){
     return view('auth.account');
 })->name('users.account')->middleware('auth');
+
 

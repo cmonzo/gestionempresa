@@ -15,7 +15,7 @@
         <label for="email">Email:</label><br>
         <input type="email" name="email" id="email" value="{{Auth::user()->email}}"><br>
 
-        <label for="phone">Teléfono:</label><br>
+        <label for="phone">{{__('Teléfono')}}:</label><br>
         <input type="number" name="phone" id="phone" value="{{Auth::user()->phone}}"><br>
 
         <label for="nif">NIF:</label><br>
@@ -32,6 +32,9 @@
 
         <label for="hiring">Fecha de contratación:</label><br>
         <input type="date" name="hiring" id="hiring" value="{{Auth::user()->hiring}}"><br>
+
+        <label for="modify"></label><br>
+        <input type="hidden" name="modify" id="modify" value=1><br>
 
         <label for="status">Estado del empleado:</label>
         @if(Auth::user()->rol == 'admin')
@@ -71,6 +74,17 @@
 
         <label for="password_confirmation">Repite Contraseña:</label><br>
         <input type="password" name="password_confirmation" id="password_confirmation"><br>
+        <label for="Posición">Rol:</label>
+@if(Auth::user()->rol == 'admin')
+                <select name="rol" id="rol" class="form-control">
+                    <option value="{{Auth::user()->rol}}"></option>
+                    <option value="admin">Administrador</option>
+                    <option value="worker">Empleado</option>
+
+                </select>
+                @else
+                {{Auth::user()->rol}}
+                @endif
 
         <input type="submit" name="eviar" value="Enviar">
     </form>

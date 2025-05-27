@@ -88,8 +88,9 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->hiring = $request->hiring;
             $user->gender = $request->gender;
-
+            if ($request->modify == 1) {
             $user->password = Hash::make($request->get('password'));
+            }
             if (Auth::user()->rol == 'admin') {
                 $user->rol = $request->rol;
                 $user->status = $request->status;
