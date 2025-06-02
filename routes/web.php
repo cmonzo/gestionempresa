@@ -22,35 +22,39 @@ use App\Http\Controllers\LocaleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('/', function () {
-    return view('index');
-})->name('indice');*/
 
 Route::get('/change-locale/{locale}', [LocaleController::class, 'change'])
     ->name('locale.change');
-Route::get('/',[StaticController::class, 'index'])->name('indice');
-Route::get('contact',[StaticController::class, 'contact'])->name('contacto');
-Route::get('quienes',[StaticController::class, 'who'])->name('quienes');
-Route::post('contact',[StaticController::class, 'send']);
-Route::get('registro',[LoginController::class,'registerForm']);
-Route::post('registro',[LoginController::class,'register'])->name('registro');
-Route::get('login',[LoginController::class,'loginForm']);
-Route::put('updateWorker',[UserController::class,'updateWorker'])->name(name: 'updateWorker');
-Route::post('showSaleClient', [SaleController::class, 'showSaleClient'])->name('showSaleClient');
-Route::put('/users/update-worker/{user}', [UserController::class, 'updateWorker'])->name('updateWorker');
-Route::post('login',[LoginController::class,'login'])->name('login');
-Route::get('logout',[LoginController::class,'logout'])->name('logout');
-Route::resource('users', UserController::class);
+Route::get('/', [StaticController::class, 'index'])->name('indice');
+Route::get('contact', [StaticController::class, 'contact'])->name('contacto');
+Route::get('quienes', [StaticController::class, 'who'])->name('quienes');
+Route::post('contact', [StaticController::class, 'send']);
+Route::get('registro', [LoginController::class, 'registerForm']);
+Route::post('registro', [LoginController::class, 'register'])->name('registro');
+Route::get('login', [LoginController::class, 'loginForm']);
+Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::resource('services', ServiceController::class);
-Route::resource('customers', CustomerController::class);
-Route::resource('sales', SaleController::class);
-Route::resource('suppliers', SupplierController::class);
-Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+
+Route::middleware(['auth'])->group(function () {
+    Route::put('/users/update-worker/{user}', [UserController::class, 'updateWorker'])->name('updateWorker');
+    Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+    Route::post('showSaleClient', [SaleController::class, 'showSaleClient'])->name('showSaleClient');
+    Route::resource('sales', SaleController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::resource('users', UserController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::get('cuenta', function () {
+        return view('auth.account');
+    })->name('users.account')->middleware('auth');
+
+});
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    
+});
 
 
 
-Route::get('cuenta', function(){
-    return view('auth.account');
-})->name('users.account')->middleware('auth');
 
 
