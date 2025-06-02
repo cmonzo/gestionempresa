@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Customer;
 use App\Models\Service;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,18 @@ class SaleController extends Controller
     {
         if (Auth::check()) {
             $sales = Sale::orderBy('type', 'ASC')->get();
+            return view('sales.index', compact('sales'));
+        } else {
+            return redirect()->route('indice');
+        }
+    }
+
+    public function showSaleClient(Request $request)
+    {
+        if (Auth::check()) {
+            $userId = User::where('name', 'LIKE', "%{$request->worker}%")
+                 ->pluck('id');
+            $sales = Sale::whereIn('user_id', $userId)->get();
             return view('sales.index', compact('sales'));
         } else {
             return redirect()->route('indice');

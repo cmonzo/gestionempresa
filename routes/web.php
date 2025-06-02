@@ -10,6 +10,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::get('registro',[LoginController::class,'registerForm']);
 Route::post('registro',[LoginController::class,'register'])->name('registro');
 Route::get('login',[LoginController::class,'loginForm']);
 Route::put('updateWorker',[UserController::class,'updateWorker'])->name(name: 'updateWorker');
-Route::post('updateWorker', [UserController::class, 'updateWorker'])->name('updateWorker');
+Route::post('showSaleClient', [SaleController::class, 'showSaleClient'])->name('showSaleClient');
 Route::put('/users/update-worker/{user}', [UserController::class, 'updateWorker'])->name('updateWorker');
 Route::post('login',[LoginController::class,'login'])->name('login');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');

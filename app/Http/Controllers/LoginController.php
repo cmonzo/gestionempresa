@@ -34,8 +34,6 @@ class LoginController extends Controller
         $user->save();
         
         return view('index');
-        //print_r($request);
-        //var_dump($user);
 
     }
 

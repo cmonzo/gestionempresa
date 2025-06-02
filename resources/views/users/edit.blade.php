@@ -5,38 +5,13 @@
 
 @section('contenido')
     <div class="mostrar">
-
+        
 
         @if(Auth::user()->rol == 'admin')
-            <form action="{{route('users.update', $user->id)}}" method="POST">
+            <form action="{{route('updateWorker', $user->id)}}" method="POST">
                 @csrf
                 @method('put')
-                <label for="name">{{$user->name}}</label><br>
-                <input type="text" name="name" id="name" value="{{$user->name}}"><br>
-
-                <label for="surname">{{$user->surname}}</label><br>
-                <input type="text" name="surname" id="surname" value="{{$user->surname}}"><br>
-
-                <label for="email">Email:</label><br>
-                <input type="email" name="email" id="email" value="{{$user->email}}"><br>
-
-                <label for="phone">Teléfono:</label><br>
-                <input type="number" name="phone" id="phone" value="{{$user->phone}}"><br>
-
-                <label for="nif">NIF:</label><br>
-                <input type="text" name="nif" id="nif" value="{{$user->nif}}"><br>
-
-                <label for="born">Fecha de nacimiento:</label><br>
-                <input type="date" name="born" id="born" value="{{$user->born}}"><br>
-
-                <label for="alias">Apodo:</label><br>
-                <input type="text" name="alias" id="alias" value="{{$user->alias}}"><br>
-
-                <label for="department">Departamento:</label><br>
-                <input type="text" name="department" id="department" value="{{$user->department}}"><br>
-
-                <label for="hiring">Fecha de contratación:</label><br>
-                <input type="date" name="hiring" id="hiring" value="{{$user->hiring}}"><br>
+                
                 <label for="status">Estado del empleado:</label>
 
                 <select name="status" id="status" class="form-control">
@@ -75,7 +50,7 @@
                 </select>
 
 
-                <input type="submit" name="eviar" value="Actualziar">
+                <input type="submit" name="eviar" value="Actualizar">
             </form>
         @endif
 
