@@ -29,20 +29,17 @@ Route::get('/', [StaticController::class, 'index'])->name('indice');
 Route::get('contact', [StaticController::class, 'contact'])->name('contacto');
 Route::get('quienes', [StaticController::class, 'who'])->name('quienes');
 Route::post('contact', [StaticController::class, 'send']);
-Route::get('registro', [LoginController::class, 'registerForm']);
-Route::post('registro', [LoginController::class, 'register'])->name('registro');
+
 Route::get('login', [LoginController::class, 'loginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::resource('services', ServiceController::class);
 
-Route::middleware(['auth'])->group(function () {
-    Route::put('/users/update-worker/{user}', [UserController::class, 'updateWorker'])->name('updateWorker');
+Route::middleware(['auth'])->group(function () {    
     Route::post('/images', [ImageController::class, 'store'])->name('images.store');
     Route::post('showSaleClient', [SaleController::class, 'showSaleClient'])->name('showSaleClient');
     Route::resource('sales', SaleController::class);
     Route::resource('customers', CustomerController::class);
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-    Route::resource('users', UserController::class);
     Route::resource('suppliers', SupplierController::class);
     Route::get('cuenta', function () {
         return view('auth.account');
@@ -50,11 +47,12 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('registro', [LoginController::class, 'registerForm']);
+    Route::post('registro', [LoginController::class, 'register'])->name('registro');
+    Route::put('/users/update-worker/{user}', [UserController::class, 'updateWorker'])->name('updateWorker');
+    Route::resource('users', UserController::class);
 });
-
-
 
 
 

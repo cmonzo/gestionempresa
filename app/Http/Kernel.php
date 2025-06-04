@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Translations::class,
+            \App\Http\Middleware\SetLocale::class,
         ],
 
         'api' => [
@@ -65,5 +66,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'translate' => \App\Http\Middleware\Translations::class,
+        'rol' => \App\Http\Middleware\RoleMiddleware::class,
+        'translate' => \App\Http\Middleware\SetLocale::class,
     ];
 }

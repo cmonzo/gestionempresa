@@ -35,7 +35,13 @@ class SaleController extends Controller
         if (Auth::check()) {
             $userId = User::where('name', 'LIKE', "%{$request->worker}%")
                  ->pluck('id');
-            $sales = Sale::whereIn('user_id', $userId)->get();
+            $customerId = Customer::where('name', 'LIKE', "%{$request->worker}%")
+                 ->pluck('id');  
+            $sales = Sale::where(function($query) use ($userId, $customerId) {
+            $query->whereIn('user_id', $userId)
+                  ->orWhereIn('customer_id', $customerId);
+         })
+         ->get();
             return view('sales.index', compact('sales'));
         } else {
             return redirect()->route('indice');
