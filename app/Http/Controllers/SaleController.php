@@ -30,6 +30,7 @@ class SaleController extends Controller
         }
     }
 
+    //showSaleClient permite buscar una venta de cualquier usuario o cliente que haya hecho la compra, buscando coincidencias en las palabras
     public function showSaleClient(Request $request)
     {
         if (Auth::check()) {
@@ -130,7 +131,7 @@ class SaleController extends Controller
      */
     public function update(Request $request, Sale $sale)
     {
-        //aqui en la vista de edit, hare que el update ademas tenga el campo para añadir la venta con el servicio y poder hacer el attach
+        
          if (Auth::check()) {
             $sale->type = $request->type;
             $sale->net = $request->net;
