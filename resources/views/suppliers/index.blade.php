@@ -11,7 +11,7 @@
                 <div class="col-6 col-sm-4">
 
                     <strong>Servicio: <a href="{{route('suppliers.show', $supplier->id)}}">{{$supplier->name}}
-                            {{$supplier->id}}</a></strong>
+                            </a></strong>
                     <p>NOMBRE: {{$supplier->name}}</p>
                     <p>TELEFONO: {{$supplier->phone}}</p>
                     <p>CIF: {{$supplier->cif}}</p>

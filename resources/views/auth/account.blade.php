@@ -38,7 +38,7 @@
 
         <label for="status">Estado del empleado:</label>
         @if(Auth::user()->rol == 'admin')
-        <select name="status" id="status" class="form-control">
+        <select name="status" id="status" class="form-control w-auto">
             <option value="{{Auth::user()->status}}"></option>
             <option value="active">activo</option>
             <option value="inactive">inactivo</option>
@@ -50,7 +50,7 @@
         @endif
 
         <label for="gender">Genero del empleado:</label>
-        <select name="gender" id="gender" class="form-control">
+        <select name="gender" id="gender" class="form-control w-auto">
             <option value="{{Auth::user()->gender}}"></option>
             <option value="male">Hombre</option>
             <option value="female">Mujer</option>
@@ -59,7 +59,7 @@
 
         <label for="Posición">Posición del empleado:</label>
         @if(Auth::user()->rol == 'admin')
-        <select name="position" id="position" class="form-control">
+        <select name="position" id="position" class="form-control w-auto">
             <option value="{{Auth::user()->position}}"></option>
             <option value="manager">Director</option>
             <option value="administrative">Administrativo</option>

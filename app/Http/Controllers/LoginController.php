@@ -10,14 +10,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-
+/**
+ * Controlador para manejar autenticación de usuarios
+ * 
+ * Gestiona registro, login, logout y vistas relacionadas con la autenticación
+ */
 class LoginController extends Controller
 {
-
-    public function register (RegisterRequest $request){
-        //dd('llega');
+    /**
+     * Registra un nuevo usuario con rol 'worker'
+     * 
+     * @param  \App\Http\Requests\RegisterRequest  $request  Datos validados del formulario
+     * @return \Illuminate\View\View
+     */
+    public function register(RegisterRequest $request)
+    {
+        // Crea nuevo usuario con los datos del formulario
         $user = new User();
-        $user->name =$request->get('name');
+        $user->name = $request->get('name');
         $user->surname = $request->get('surname');
         $user->phone = $request->get('phone');
         $user->nif = $request->get('nif');
@@ -32,20 +42,34 @@ class LoginController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->rol = 'worker';
         $user->save();
-        
+
         return view('index');
 
     }
 
-    public function registerForm(){
+    /**
+     * Muestra el formulario de registro.
+     *
+     * @return 
+     */
+
+    public function registerForm()
+    {
         return view("auth.register");
     }
 
-    public function loginForm(){
-        if(Auth::viaRemember()){
+    /**
+     * Muestra el formulario de login o redirige si ya está autenticado
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+
+    public function loginForm()
+    {
+        if (Auth::viaRemember()) {
             return redirect()->route('indice');
         } else {
-            if (Auth::check()){
+            if (Auth::check()) {
                 return redirect()->route('indice');
             } else {
                 return view('auth.login');
@@ -53,8 +77,16 @@ class LoginController extends Controller
         }
     }
 
-    public function login(Request $request){
-        $credenciales = $request->only('name','password');
+   /**
+     * Procesa el login del usuario
+     *
+     * @param  \Illuminate\Http\Request  $request  Credenciales de acceso
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+
+    public function login(Request $request)
+    {
+        $credenciales = $request->only('name', 'password');
 
         if (Auth::guard('web')->attempt($credenciales)) {
             $request->session()->regenerate();
@@ -65,12 +97,20 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(Request $request){
+    /**
+     * Cierra la sesión del usuario y limpia la sesión
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+    public function logout(Request $request)
+    {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
 
-    
+
 }

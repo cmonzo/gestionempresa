@@ -7,16 +7,16 @@
     <div class="mostrar">
         <div>
             {{$user->name}} {{$user->surname}}<br>
-            Correo:<br>{{$user->email}} <br>
-            Teléfono:<br>{{$user->phone}} <br>
-            NIF:<br>{{$user->nif}} <br>
-            Fecha de nacimiento:<br>{{$user->born}} <br>
-            Genero:<br>{{$user->gender}} <br>
-            Alias:<br>{{$user->alias}} <br>
-            Departamento:<br>{{$user->department}} <br>
-            Cargo:<br>{{$user->position}} <br>
-            Fecha de contratación:<br>{{$user->hiring}} <br>
-            Estado del empleado:<br>{{$user->status}} <br>
+            Correo:{{$user->email}} <br>
+            Teléfono:{{$user->phone}} <br>
+            NIF:{{$user->nif}} <br>
+            Fecha de nacimiento:{{$user->born}} <br>
+            Genero:{{$user->gender}} <br>
+            Alias:{{$user->alias}} <br>
+            Departamento:{{$user->department}} <br>
+            Cargo:{{$user->position}} <br>
+            Fecha de contratación:{{$user->hiring}} <br>
+            Estado del empleado:{{$user->status}} <br>
             rol: {{$user->rol}} <br>
 
         </div>

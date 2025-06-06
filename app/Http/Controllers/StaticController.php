@@ -7,16 +7,32 @@ use Illuminate\Http\Request;
 use Iluminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 
+/**
+ * Controlador para manejar páginas estáticas del sitio
+ * 
+ * Gestiona las vistas principales que no requieren lógica compleja
+ */
 class StaticController extends Controller
 {
-    public function index(){
+    /**
+     * Muestra la página principal del sitio
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
         return view('index');
     }
-
-    public function contact(){
+    /**
+     * Muestra la página de contacto
+     *
+     * @return \Illuminate\View\View
+     */
+    public function contact()
+    {
         return view('contact');
     }
-    
+
     /*public function send(Request $request){
         $request->validate([
             'name' => 'required',
@@ -33,11 +49,17 @@ class StaticController extends Controller
         Mail::to('tu_correo@example.com')->send(new ContactMail($details));
 
         return redirect()->route('contact.form')->with('success', 'Mensaje enviado correctamente');
-    }*/
+}*/
 
-public function who(){
-    return view('who');
-}
+    /**
+     * Muestra la página "Quiénes somos"
+     *
+     * @return \Illuminate\View\View
+     */
+    public function who()
+    {
+        return view('who');
+    }
 
-    
+
 }

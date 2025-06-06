@@ -8,7 +8,7 @@
     <div class="row align-items-center">
     <form action="{{route('showSaleClient')}}" method="POST">
       @csrf
-      <label for="worker">Empleado:</label><br>
+      <label for="worker">Empleado o cliente:</label><br>
       <input type="text" name="worker" id="worker"><br>
 
       <input type="submit" name="enviar" value="Buscar">
@@ -20,8 +20,8 @@
         <th>LOCALIZADOR</th>
         <th>TIPO</th>
         <th>PRECIO NETO</th>
-        <th>PRECIO VENTA</th>
         <th>COMISION</th>
+        <th>PRECIO DE VENTA</th>
         <th>COMENTARIO</th>
         <th>VENDEDOR</th>
         <th>CLIENTE</th>

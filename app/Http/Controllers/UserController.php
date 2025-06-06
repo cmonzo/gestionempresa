@@ -8,7 +8,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
+/**
+ * Controlador para gestionar operaciones de usuarios
+ * 
+ * Maneja la visualización, edición y actualización de perfiles de usuario
+ */
 class UserController extends Controller
 {
     /**
@@ -18,6 +22,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        /**
+     * Muestra un listado de todos los usuarios ordenados por nombre
+     *
+     * @return \Illuminate\View\View
+     */
         $users = User::orderBy('name', 'ASC')->get();
         return view('users.index', compact('users'));
     }
@@ -49,16 +58,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     /**
+     * Muestra los detalles de un usuario específico
+     *
+     * @param  \App\Models\User  $user  Modelo de usuario
+     * @return \Illuminate\View\View
+     */
     public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un usuario
+     * 
+     * Solo accesible para administradores
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\User  $user  Usuario a editar
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(User $user)
     {
@@ -70,11 +88,11 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza los datos básicos de un usuario
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request  Datos del formulario
+     * @param  \App\Models\User  $user  Usuario a actualizar
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -88,7 +106,7 @@ class UserController extends Controller
             $user->hiring = $request->hiring;
             $user->gender = $request->gender;
             $user->password = Hash::make($request->get('password'));
-            
+
             if (Auth::user()->rol == 'admin') {
                 $user->rol = $request->rol;
                 $user->status = $request->status;
@@ -99,6 +117,15 @@ class UserController extends Controller
         return redirect()->route('indice');
 
     }
+    /**
+     * Actualiza solo los campos laborales de un usuario (rol, estado y posición)
+     * 
+     * Solo accesible para administradores
+     *
+     * @param  \Illuminate\Http\Request  $request  Datos del formulario
+     * @param  \App\Models\User  $user  Usuario a actualizar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateWorker(Request $request, User $user)
     {
         if (Auth::check()) {
@@ -113,7 +140,7 @@ class UserController extends Controller
 
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.

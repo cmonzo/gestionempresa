@@ -36,7 +36,7 @@
         <input type="date" name="hiring" id="hiring"><br>
 
         <label for="status">Estado del empleado:</label>
-        <select name="status" id="status" class="form-control">
+        <select name="status" id="status" class="form-control w-auto">
             <option value="active">activo</option>
             <option value="inactive">inactivo</option>
             <option value="holidays">vacaciones</option>
@@ -44,14 +44,14 @@
         </select>
 
         <label for="gender">Genero del empleado:</label>
-        <select name="gender" id="gender" class="form-control">
+        <select name="gender" id="gender" class="form-control w-auto">
             <option value="male">Hombre</option>
             <option value="female">Mujer</option>
             <option value="unidentified">Prefiero no decirlo</option>
         </select>
 
         <label for="Posición">Posición del empleado:</label>
-        <select name="position" id="position" class="form-control">
+        <select name="position" id="position" class="form-control w-auto">
             <option value="manager">Director</option>
             <option value="administrative">Administrativo</option>
             <option value="business">Comercial</option>

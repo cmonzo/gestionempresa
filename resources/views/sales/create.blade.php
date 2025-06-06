@@ -18,29 +18,31 @@
             <input type="number" name="commission" id="commission" min="1" step="0.01"><br><br>
 
             <label for="comment">COMENTARIO:</label><br>
-            <input type="text" name="comment" id="comment"><br>
-
-            <select name="customer" id="customer" class="form-control">
+            <input type="text" name="comment" id="comment"><br><br>
+            <p>CLIENTE:</p>
+            <select name="customer" id="customer" class="form-control w-auto">
                 @forelse ($customers as $customer)
-                    <option value="{{ $customer->id }}">CLIENTE {{ $customer->name }}</option>
-                    @empty
+                    <option value="{{ $customer->id }}"> {{ $customer->name }}</option>
+                @empty
                     No hay clientes apuntados
                 @endforelse
             </select>
-            <select name="service_id" id="service_id" class="form-control">
+            <br>
+            <p>SERVICIO:</p>
+            <select name="service_id" id="service_id" class="form-control w-auto">
                 @forelse ($services as $service)
                     <option value="{{ $service->id }}">SERVICIO {{ $service->type }}</option>
-                    @empty
+                @empty
                     No hay servicios apuntados
                 @endforelse
             </select>
-
+            <br>
             <input type="submit" name="enviar" value="Enviar">
         </form>
     </div>
 
     <div class="row align-items-center">
-        
+
     </div>
 
 @endsection

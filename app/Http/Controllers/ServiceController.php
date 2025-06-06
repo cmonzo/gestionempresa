@@ -10,12 +10,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con servicios
+ * 
+ * Maneja la creación, edición, visualización y eliminación de servicios
+ * 
+ * @package App\Http\Controllers
+ */
 class ServiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de todos los servicios ordenados por tipo
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View Vista con el listado de servicios
      */
     public function index()
     {
@@ -24,9 +31,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo servicio
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
@@ -38,38 +46,17 @@ class ServiceController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        /*
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
-        
-            $path = $request->file('image')->store('public/img');
-            $url = Storage::url($path);
-        
-            
-            $service = new Service();
-            $service->type = $request->type;
-            $service->iva = $request->iva;
-            $service->save();
-            return back()->with('success', 'Imagen subida correctamente')
-                     ->with('image', $url);
-        */
 
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de un servicio específico
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Service  $service  Modelo de servicio inyectado
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show(Service $service)
     {
@@ -81,10 +68,10 @@ class ServiceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un servicio existente
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Service  $service  Modelo de servicio a editar
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(Service $service)
     {
@@ -97,11 +84,11 @@ class ServiceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un servicio existente en la base de datos
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request  Datos actualizados
+     * @param  \App\Models\Service  $service  Modelo de servicio a actualizar
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Service $service)
     {
@@ -118,10 +105,11 @@ class ServiceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un servicio de la base de datos (solo para administradores)
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Service  $service  Modelo de servicio a eliminar
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Service $service)
     {

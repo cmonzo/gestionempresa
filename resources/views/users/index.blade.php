@@ -9,7 +9,7 @@
             <p>El USUARIO se ha eliminado</p>
         @endif
     @endisset
-    <p>Listado de usuarios</p>
+    <h1>Listado de usuarios</h1>
     <div class="users">
         @forelse ($users as $user)
             <div class="usuario">
