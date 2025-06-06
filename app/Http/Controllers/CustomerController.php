@@ -89,9 +89,13 @@ class CustomerController extends Controller
 
     
 
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        if (Auth::check()) {
+            return view('customers.edit', compact('customer'));
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**
@@ -101,9 +105,20 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        if (Auth::check()) {
+            $customer->name = $request->name;
+            $customer->surname = $request->surname;
+            $customer->phone = $request->phone;
+            $customer->nif = $request->nif;
+            $customer->adress = $request->adress;
+            $customer->save();
+
+            return redirect()->route('customers.index');
+        } else {
+            return redirect()->route('indice');
+        }
     }
 
     /**

@@ -10,41 +10,11 @@
    {{$customer->nif}}<br>
    {{$customer->adress}}<br>
    {{$customer->phone}}<br>
-    {{--NOMBRE:<br>{{$user->name}} <br>--}}
-    {{-- EDITAR EQUIPO: <a href="{{route('users.edit',['team' => $user->name])}}">editar</a> <br> --}}
-    
-
-        
-        {{-- @if($event->users->contains(Auth::user()))
-            <a href="{{route('desapuntar',$event)}}">Desapuntarme</a>
-        @else
-            <a href="{{route('apuntar',$event)}}">Apuntarme</a>
-        @endif --}}
-    
-    {{-- @forelse ($team->users as $user)
-        
-    <div class="player">
-        @if(Auth::check())
-            {{$user->name}} <br>
-        @endif    
-
-    </div>
-    
-    <div class="gamer">
-        {{$user->name}}
-        {{$user->number}}
-
-    </div>
-    @empty
-        No hay jugadores apuntados
-    @endforelse --}}
-    
-    </div>
-    {{-- <form action="{{route('users.destroy',$user->id)}}" method="post">
-        @csrf
-        @method('delete')
-        <input type="submit" value="eliminar">
-</form> --}}
+     @if(Auth::check())
+                <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-custom">
+                    MODIFICAR CLIENTE
+                </a>
+            @endif
 </div>
     
 @endsection
